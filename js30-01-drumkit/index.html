@@ -61,6 +61,7 @@
   function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //create a const variable to store the pressed key
+    console.log(e.keyCode);
     if(!audio) return; //don't run the function on keys that aren't bound to an audio clip.
     audio.currentTime = 0; //restart playback when pressed.
     audio.play();
@@ -76,7 +77,7 @@
   const keys = document.querySelectorAll('.key');
   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
-  window.addEventListener('keydown', playSound);
+  window.addEventListener('keyup', playSound);
 </script>
 </body>
 </html>
