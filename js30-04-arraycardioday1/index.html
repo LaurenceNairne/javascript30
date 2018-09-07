@@ -31,11 +31,15 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+
+    // Arrow function here is just replacing 'function(inventor) {...}'
     const fifteen = inventors.filter((inventor) => inventor.year >= 1500 && inventor.year <1600);
     console.table(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+
+    // ${} just pulls a variable into a string without having to use longform + operator
     const fullNames = inventors.map((inventor) => `${inventor.first} ${inventor.last}`);
     console.log(fullNames);
 
@@ -46,6 +50,12 @@
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+
+    // Parameters for reduce() are reduce(accumulator, currentValue, currentIndex, array)
+    // Parameter 'total' is initialised at the end of the .reduce() call
+    // Each iteration through the loop adds the difference between passed and year for each inventor
+    // Then it will switch lastGuy with nextGuy if it's greater
+
     const totalYears = inventors.reduce((total, inventor) => {
       return total + (inventor.passed - inventor.year);
     }, 0);
@@ -71,6 +81,11 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+
+    // Looks at current index (a) and next index in people
+    // Creates an array that splits string at current index into first and last name
+    // Does the same for next index
+    // If current index surname is creater than next index surname, move it 1 up the index
     const alphaSorted = people.sort((a, b) => {
         const [aSurname, aFirstName] = a.split(', ');
         const [bSurname, bFirstName] = b.split(', ');
@@ -83,6 +98,13 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    // Function creates an object to hold each of the modes of transport found in the data array
+    // In the fuction, the obj is what we'll create, the item is the value at each index in data
+    // Items are only added to our objects if it doesn't already exist
+    // Then the obj[item] iterates by 1 for each time that item is found in the data array
+    // Then the obj is returned
+    // {} at the end is just us creating the empty obj (this could be filled with props if we knew them
+    // upfront).
     const transportation = data.reduce(function(obj, item) {
       if (!obj[item]) {
         obj[item] = 0;
